@@ -4,15 +4,6 @@ import { Links2 } from "../store";
 export default () => html`
   <footer>
     <body>
-      Listen, Learn, & Celebrate!
-      <br>
-      <br>
-      <i>
-        This API was provided by
-        <a href="https://calendarific.com/">Calendarific</a>
-      </i>
-
-  </footer>
   <nav>
     <ul class="navLinks">
       ${Links2.map(
@@ -22,6 +13,6 @@ export default () => html`
     </ul>
   </nav>
   </body>
-
+ </footer>
 
 `;

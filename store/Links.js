@@ -1,5 +1,5 @@
 export default [
-  { title: "Home", text: "Holidays" },
-  { title: "History", text: "History" },
-  { title: "Music", text: "Music" }
+  { title: "Photos", text: "Photo Album" },
+  { title: "UpcomingEvents", text: "Upcoming Events" },
+  { title: "Videos", text: "Videos" }
 ];
