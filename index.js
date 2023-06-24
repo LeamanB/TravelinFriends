@@ -21,30 +21,12 @@ function render(state = store.Home) {
 
 function afterRender(state) {
   if (state.view === "Home") {
-    document.querySelector("form").addEventListener("submit", event => {
-      event.preventDefault();
-
-      const inputList = event.target.elements;
-
-      console.log(inputList.start.value);
-      const [year, month, day] = inputList.start.value.split("-");
-      axios
-        .get(
-          `https://calendarific.com/api/v2/holidays?api_key=${process.env.CALENDARIFIC_API_KEY}&country=${inputList.Countries.value}&year=${year}&month=${month}&day=${day}`
-        )
-        .then(response => {
-          console.log("response", response.data);
-          store.Home.holidays = response.data.response.holidays;
-          store.History.holidays = response.data.response.holidays;
-          store.Music.holidays = response.data.response.holidays;
-          router.navigate("/Home");
-        })
-        .catch(err => console.log(err));
+    document.addEventListener("DOMContentLoaded", () => {
+      const tabElements = document.querySelectorAll(".tab");
+      tabElements.forEach(tabElement => {
+        tabElement.addEventListener("click", handleTabClick);
+      });
     });
-  }
-  if (state.view === "History") {
-    let holidayWiki = store.Home.holidays;
-    return console.log("This is History" + holidayWiki);
   }
 }
 
@@ -56,11 +38,9 @@ router.hooks({
         : "Home";
     switch (view) {
       case "Home":
-        console.log(store.Home.holidays);
         done();
         break;
       case "History":
-        console.log(store.Home.holidays.name);
         done();
         break;
       default:

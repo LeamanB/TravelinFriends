@@ -1,4 +1,4 @@
 export default {
-    header: "Upcoming Events",
-    view: "UpcomingEvents"
+  header: "Upcoming Events",
+  view: "UpcomingEvents"
 };
