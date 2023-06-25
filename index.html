@@ -15,5 +15,67 @@
 <body>
     <div id="root"></div>
     <script type="module" src="index.js"></script>
+    <script>
+const images = document.querySelectorAll('.slideshow img');
+let currentImageIndex = 0;
+
+function showNextImage() {
+  images[currentImageIndex].classList.remove('active');
+  currentImageIndex = (currentImageIndex + 1) % images.length;
+  images[currentImageIndex].classList.add('active');
+}
+
+<script>
+    function enlargePhoto(photoSrc) {
+      // Open a new window or modal to display the enlarged photo
+      // You can use any JavaScript library or custom code to implement this part
+      // Here's an example using the window.open() method to open a new window
+      window.open(photoSrc, '_blank');
+    }
+  </script>
+
+// Set interval to change image every 3 seconds
+setInterval(showNextImage, 3000);
+    </script>
+
+
+<script>
+  // Fetch YouTube videos and generate the grid
+  function fetchYouTubeVideos() {
+    const apiKey = 'YOUR_YOUTUBE_API_KEY';
+    const playlistId = 'YOUR_PLAYLIST_ID';
+
+    const apiUrl = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=9&playlistId=${playlistId}&key=${apiKey}`;
+
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+        const videoGrid = document.getElementById('videoGrid');
+
+        data.items.forEach(item => {
+          const videoId = item.snippet.resourceId.videoId;
+          const thumbnailUrl = item.snippet.thumbnails.medium.url;
+
+          const videoItem = document.createElement('div');
+          videoItem.classList.add('video-item');
+          videoItem.style.backgroundImage = `url(${thumbnailUrl})`;
+
+          videoItem.addEventListener('click', () => {
+            // Open the video in a new tab or perform any desired action
+            window.open(`https://www.youtube.com/watch?v=${videoId}`);
+          });
+
+          videoGrid.appendChild(videoItem);
+        });
+      })
+      .catch(error => {
+        console.error('Error fetching YouTube videos:', error);
+      });
+  }
+
+  // Call the function to fetch and generate the video grid
+  fetchYouTubeVideos();
+</script>
+
 </body>
 </html>
